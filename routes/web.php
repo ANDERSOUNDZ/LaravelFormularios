@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('categorias.create');
+    return 'Clase CRUD';
 });
 
 //Creando rutas de recurso paracrearel Crud
