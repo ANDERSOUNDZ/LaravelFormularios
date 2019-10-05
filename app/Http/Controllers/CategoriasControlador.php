@@ -43,10 +43,13 @@ class CategoriasControlador extends Controller
 
         ]);
 
+        //procesando imagen
+        $imagen = $request->file('imagen');
+        $archivo = $imagen->store('imagenes');
         
         $categoria = new Categoria();
         $categoria->nombrecategoria= $request->get('nombrecategoria');
-        $categoria->imagen ='';
+        $categoria->imagen = $archivo;
         $categoria->save();
         return redirect()->route('categorias.show' ,['categoria'=> $categoria->id]);
     }

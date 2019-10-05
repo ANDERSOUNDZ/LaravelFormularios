@@ -6,7 +6,7 @@
 
 @section('contenido')
     <div>
-    <form action="{{route('categorias.store')}}" method="POST">
+    <form action="{{route('categorias.store')}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="form-group {{$errors->has('nombrecategoria')?'has-error': ''}} ">
                     <label for="nombrecategoria">Nombre de la categoria:</label>
@@ -19,7 +19,7 @@
                         </span>
                     @endif
             </div>
-            <div class="form-group {{$errors->has('nombrecategoria')?'has-error':''}}">
+            <div class="form-group {{$errors->has('imagen')?'has-error':''}}">
                 <label for="imagen">Imagen:</label>    
                 <input type="file" name="imagen" id="imagen">
                 @if ($errors->has('imagen'))
