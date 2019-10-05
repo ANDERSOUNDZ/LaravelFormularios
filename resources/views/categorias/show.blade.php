@@ -1,11 +1,13 @@
-@extends('layouts.app')
+@extends('template.app')
 
 @section('titulo')
-    mostrar categoria
+    Mostrar categoria
 @endsection
 
 @section('contenido')
     <div>
-        <p>{{$categoria->nombre}}</p>
-    </div>
+        <h4>
+            {{$categorias->nombrecategoria}}    
+        </h4>    
+    </div>    
 @endsection

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use Illuminate\Http\Request;
 
-class CategoriasController extends Controller
+class CategoriasControlador extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,32 +35,20 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $categoria = new Categoria;
-        $categoria->nombre=$request->get('nombrea');
-        $categoria->image='';
-        $categoria->save();
-        return redirect()->route('categorias.show',['categoria'=>$categoria->id]);
+        //validaciones
+        $this->validate($request,[
 
-        //$categoria = new Categoria();
-        /*
-        $categoria = new Categoria;
-        //asignamos en el campo de la tabla de la base de datos (cualquier campo que hayamos puesto en la base de datos)
-        //Aqui va el nombre de el input del formulario
-        $categoria->nombre = $request->get('nombre');
-        //iNGRESAR CAMPO DE IMAGEN Y RUTA DONDESE ALMACENARA
-        $categoria->image = '';
-        $categoria->save();
-        */
-        /*
-        //recibir formulario en formato json
-        return $request->all();
-        */
+        'nombrecategoria' => 'required|min:3|unique:categorias',
+        'imagen' => 'required|image'
+
+        ]);
+
         
-        // redirecciona a una ruta que asignemos despues de enviar los datos 
-        /*
-        return redirect()->route('categorias.show', ['categoria'=>$categoria->$id]);
-        */
+        $categoria = new Categoria();
+        $categoria->nombrecategoria= $request->get('nombrecategoria');
+        $categoria->imagen ='';
+        $categoria->save();
+        return redirect()->route('categorias.show' ,['categoria'=> $categoria->id]);
     }
 
     /**
@@ -71,13 +59,8 @@ class CategoriasController extends Controller
      */
     public function show($id)
     {
-        $categoria = Categoria::find($id);
-        return view('categorias.show',compact('categoria'));
-
-        //retornamos los datos
-        //$categoria = Categoria::find($id);
-        //return view('categorias.show', compact('categoria'));
-       
+        $categorias = Categoria::find($id);
+        return view('categorias.show',compact('categorias'));
     }
 
     /**

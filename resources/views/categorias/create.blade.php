@@ -1,30 +1,36 @@
-@extends('layouts.app')
+@extends('template.app')
 
 @section('titulo')
-    Crear categoria
+    Crear Categoria
 @endsection
 
 @section('contenido')
-
-<div>
-    <h1>Nueva Categoria</h1>
-</div>
-<div>
-<form action="{{ route('categorias.store') }}" method="POST">
-        {{ 
-            //crear campos ocultos , " csrf_field() " token de verificacion de datos, revisar este enlace (https://es.stackoverflow.com/questions/102233/qu%C3%A9-es-exactamente-el-token-csrf-field-que-se-le-a%C3%B1ade-a-los-formulario-en-lara)
-            csrf_field()
-            }}
-            <div>
-                    <input type="text" name="nombrea">
-                </div>
-                <div>
-                    <input type="file" name="image">
+    <div>
+    <form action="{{route('categorias.store')}}" method="POST">
+            {{csrf_field()}}
+            <div class="form-group {{$errors->has('nombrecategoria')?'has-error': ''}} ">
+                    <label for="nombrecategoria">Nombre de la categoria:</label>
+            <input type="text" name="nombrecategoria" id="nombrecategoria" placeholder="Nombre de la categoria" value="{{old('nombrecategoria')}}">
+                    @if ($errors->has('nombrecategoria'))
+                        <span class="help-block">
+                            <strong>
+                                {{$errors->first('nombrecategoria')}}
+                            </strong>
+                        </span>
+                    @endif
             </div>
-            <div>
-                <button type="submit">Guardar</button>
+            <div class="form-group {{$errors->has('nombrecategoria')?'has-error':''}}">
+                <label for="imagen">Imagen:</label>    
+                <input type="file" name="imagen" id="imagen">
+                @if ($errors->has('imagen'))
+                    <span class="help-block">
+                        <strong>
+                            {{$errors->first('imagen')}}
+                        </strong>
+                    </span>
+                @endif
             </div>
-    </form>
-</div>
-
+            <button type="submit">enviar</button>
+        </form>
+    </div>
 @endsection
