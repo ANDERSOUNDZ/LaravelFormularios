@@ -11,7 +11,7 @@
         </h4>    
     </div>    
     <div>
-    <p>Creadeo el dia: {{$categorias->create_at}}</p>
+    <p>Creado el dia: {{$categorias->created_at}}</p>
     </div>
     <div>
         @if ($categorias->imagen)

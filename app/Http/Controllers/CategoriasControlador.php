@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\Http\Requests\StoreCategoria;
 use Illuminate\Http\Request;
 
 class CategoriasControlador extends Controller
@@ -33,15 +34,10 @@ class CategoriasControlador extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoria $request)
     {
         //validaciones
-        $this->validate($request,[
-
-        'nombrecategoria' => 'required|min:3|unique:categorias',
-        'imagen' => 'required|image'
-
-        ]);
+        
 
         //procesando imagen
         $imagen = $request->file('imagen');

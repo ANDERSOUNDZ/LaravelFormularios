@@ -11,6 +11,9 @@
     <title>@yield('titulo')</title>
   </head>
   <body>
+    <div>
+        @include('partes.menu')
+    </div>
     <div class="container">
         @yield('contenido')
     </div>
