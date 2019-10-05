@@ -30,4 +30,15 @@ class StoreCategoria extends FormRequest
 
         ];
     }
+
+    public function messages()
+    {
+        return[
+            'nombrecategoria.required'=> 'El nombre de la categoria es requerido.',
+            'nombrecategoria.min'=>'El nombre de la categoria debe tener minimo 3 caracteres.',
+            'nombrecategoria.unique'=>'El nombre de la categoria ya existe!.',
+            'imagen.required'=>'La imagen es obligatoria!.',
+            'imagen.image' => 'El archivo debe ser una imagen.'
+        ];
+    }
 }
